@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crop Disease Detection - System Flowchart</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+      }
+      .container {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+      h1 {
+        color: #2c3e50;
+        text-align: center;
+        border-bottom: 3px solid #3498db;
+        padding-bottom: 10px;
+      }
+      h2 {
+        color: #27ae60;
+        margin-top: 40px;
+      }
+      .mermaid {
+        text-align: center;
+        margin: 20px 0;
+      }
+      .description {
+        background: #ecf0f1;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+        border-left: 5px solid #3498db;
+      }
+      .feature-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+      }
+      .feature-card {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 4px solid #e74c3c;
+      }
+      .feature-card h4 {
+        margin: 0 0 10px 0;
+        color: #2c3e50;
+      }
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin: 20px 0;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+      }
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .legend-color {
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        border: 2px solid #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🌱 Crop Disease Detection Assistant - System Flowchart</h1>
+
+      <div class="description">
+        <h3>📋 System Overview</h3>
+        <p>
+          This flowchart illustrates the complete functionality of the Crop
+          Disease Detection Assistant, showing how users interact with the
+          system, how AI models process images, and how the Q&A system provides
+          intelligent responses.
+        </p>
+      </div>
+
+      <div class="feature-list">
+        <div class="feature-card">
+          <h4>🖼️ Image Analysis</h4>
+          <p>Upload → AI Detection → Disease Classification</p>
+        </div>
+        <div class="feature-card">
+          <h4>💬 Q&A System</h4>
+          <p>Questions → AI Processing → Expert Answers</p>
+        </div>
+        <div class="feature-card">
+          <h4>🌐 Multi-language</h4>
+          <p>English ↔ Bengali Translation</p>
+        </div>
+        <div class="feature-card">
+          <h4>🔧 Fallback System</h4>
+          <p>Works even without OpenAI API</p>
+        </div>
+      </div>
+
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-color" style="background: #e1f5fe"></div>
+          <span>User Actions</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: #f3e5f5"></div>
+          <span>Processing</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: #e8f5e8"></div>
+          <span>AI Models</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: #fff3e0"></div>
+          <span>Decisions</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: #ffebee"></div>
+          <span>Errors</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: #e0f2f1"></div>
+          <span>Success</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>🔄 Complete User Journey Flow</h2>
+      <div class="mermaid">
+        flowchart TD %% User Interface Layer A[👤 User Opens App] --> B{🖼️
+        Upload Image?} %% Image Upload Flow B -->|Yes| C[📤 Select/Drag Image] B
+        -->|No| D[📖 View Documentation] C --> E{🔍 Valid Image?} E -->|No| F[❌
+        Show Error Message] E -->|Yes| G[🌐 Send to Backend API] %% Backend
+        Processing G --> H[🏗️ Backend Receives Image] H --> I[🤖 Load ML Models]
+        %% Model Processing I --> J[📷 Image Preprocessing] J --> K[🧠 SwinV2
+        Disease Detection] J --> L[💬 BLIP Image Captioning] J --> M[🔤 ViT-GPT2
+        Captioning] %% Results Processing K --> N[🏷️ Crop & Disease
+        Classification] L --> O[📝 Generate Caption 1] M --> P[📝 Generate
+        Caption 2] N --> Q[🔄 Merge Results] O --> Q P --> Q Q --> R{🌍 Language
+        = Bengali?} R -->|Yes| S[🔄 Translate Results] R -->|No| T[📊 Return
+        Analysis Results] S --> T %% Frontend Display T --> U[✅ Display Results
+        on Frontend] U --> V[📱 Show: Caption, Crop, Disease] %% Q&A Flow V -->
+        W{❓ User Asks Question?} W -->|No| X[⏳ Wait for User Action] W
+        -->|Yes| Y[💭 Process Question] Y --> Z{🔑 OpenAI Key Available?} Z
+        -->|Yes| AA[🧠 Send to OpenAI GPT] Z -->|No| BB[🔧 Use Fallback
+        Responses] AA --> CC[🤖 Generate AI Response] BB --> DD[📚 Pattern-based
+        Response] CC --> EE{🌍 Bengali Response?} DD --> EE EE -->|Yes| FF[🔄
+        Translate Answer] EE -->|No| GG[📝 Return Answer] FF --> GG GG --> HH[💬
+        Display Answer] HH --> II[📝 Add to Chat History] %% Language Switching
+        II --> JJ{🌐 Switch Language?} JJ -->|Yes| KK[🔄 Translate Everything]
+        JJ -->|No| LL[🔄 Continue Interaction] KK --> MM{🔑 OpenAI Available?}
+        MM -->|Yes| NN[🤖 Translate via GPT] MM -->|No| OO[📋 Return Original
+        Text] NN --> PP[🌍 Update Interface] OO --> PP PP --> LL %% Loop Back LL
+        --> W X --> B F --> B D --> B %% Error Handling G -.->|Network Error|
+        QQ[⚠️ Connection Error] H -.->|Processing Error| RR[⚠️ Backend Error] AA
+        -.->|API Error| SS[⚠️ OpenAI Error → Fallback] QQ --> F RR --> F SS -->
+        BB %% Styling classDef userAction
+        fill:#e1f5fe,stroke:#01579b,stroke-width:2px classDef processing
+        fill:#f3e5f5,stroke:#4a148c,stroke-width:2px classDef aiModel
+        fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px classDef decision
+        fill:#fff3e0,stroke:#e65100,stroke-width:2px classDef error
+        fill:#ffebee,stroke:#c62828,stroke-width:2px classDef success
+        fill:#e0f2f1,stroke:#00695c,stroke-width:2px class A,C,Y userAction
+        class H,I,J,Q,S,KK processing class K,L,M,AA,BB aiModel class
+        B,E,R,W,Z,EE,JJ,MM decision class F,QQ,RR,SS error class U,V,HH,II,PP
+        success
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>🏗️ System Architecture</h2>
+      <div class="mermaid">
+        graph TB subgraph "🖥️ Frontend (React + Vite)" A1[📱 User Interface]
+        A2[🖼️ Image Upload Component] A3[💬 Q&A Component] A4[📊 Results
+        Display] A5[🌐 Language Selector] end subgraph "🔌 API Layer" B1[📡 HTTP
+        Requests] B2[🔄 CORS Middleware] B3[📝 Request Validation] end subgraph
+        "⚙️ Backend (FastAPI)" C1[🛣️ Route Handlers] C2[📋 Business Logic] C3[🔧
+        Service Layer] end subgraph "🧠 AI/ML Services" D1[🤖 Model Loader]
+        D2[🌾 SwinV2 Disease Detection] D3[📷 BLIP Captioning] D4[🔤 ViT-GPT2
+        Captioning] D5[🧠 OpenAI GPT Service] end subgraph "💾 Data Processing"
+        E1[🖼️ Image Preprocessing] E2[📝 Text Processing] E3[🔄 Translation
+        Service] E4[📚 Fallback Responses] end subgraph "📁 Model Files" F1[🏷️
+        config.json] F2[⚖️ model.safetensors] F3[🔧 preprocessor_config.json]
+        end %% Connections A1 --> A2 A1 --> A3 A1 --> A4 A1 --> A5 A2 --> B1 A3
+        --> B1 A5 --> B1 B1 --> B2 B2 --> B3 B3 --> C1 C1 --> C2 C2 --> C3 C3
+        --> D1 C3 --> D5 D1 --> D2 D1 --> D3 D1 --> D4 D2 --> E1 D3 --> E1 D4
+        --> E1 D5 --> E2 E2 --> E3 C3 --> E4 D2 --> F1 D2 --> F2 D2 --> F3 %%
+        Styling classDef frontend fill:#e3f2fd,stroke:#1976d2 classDef api
+        fill:#f3e5f5,stroke:#7b1fa2 classDef backend fill:#e8f5e8,stroke:#388e3c
+        classDef ai fill:#fff3e0,stroke:#f57c00 classDef data
+        fill:#fce4ec,stroke:#c2185b classDef files fill:#f1f8e9,stroke:#689f38
+        class A1,A2,A3,A4,A5 frontend class B1,B2,B3 api class C1,C2,C3 backend
+        class D1,D2,D3,D4,D5 ai class E1,E2,E3,E4 data class F1,F2,F3 files
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>🔄 Data Flow Sequence</h2>
+      <div class="mermaid">
+        sequenceDiagram participant U as 👤 User participant FE as 🖥️ Frontend
+        participant API as 🔌 API participant BE as ⚙️ Backend participant ML as
+        🧠 ML Models participant GPT as 🤖 OpenAI Note over U,GPT: Image
+        Analysis Flow U->>FE: Upload Image FE->>API: POST /diagnose/ (image)
+        API->>BE: Process Request BE->>ML: Load Models ML->>ML: Preprocess Image
+        ML->>ML: SwinV2 Prediction ML->>ML: BLIP Captioning ML->>BE: Return
+        Results BE->>API: Analysis Response API->>FE: JSON Response FE->>U:
+        Display Results Note over U,GPT: Q&A Flow U->>FE: Ask Question FE->>API:
+        POST /ask/ (question) API->>BE: Process Question alt OpenAI Available
+        BE->>GPT: Send Question + Context GPT->>BE: AI Response else Fallback
+        Mode BE->>BE: Generate Fallback Response end BE->>API: Answer Response
+        API->>FE: JSON Response FE->>U: Display Answer Note over U,GPT:
+        Translation Flow U->>FE: Switch Language FE->>API: POST /translate/
+        (text) API->>BE: Translation Request alt OpenAI Available BE->>GPT:
+        Translate Text GPT->>BE: Translated Text else Fallback Mode BE->>BE:
+        Return Original Text end BE->>API: Translation Response API->>FE:
+        Updated Content FE->>U: Show Translated Interface
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>📊 Key Components Breakdown</h2>
+
+      <div class="feature-list">
+        <div class="feature-card">
+          <h4>🧠 AI Models</h4>
+          <ul>
+            <li><strong>SwinV2:</strong> Disease detection (88 classes)</li>
+            <li><strong>BLIP:</strong> Image captioning</li>
+            <li><strong>ViT-GPT2:</strong> Alternative captioning</li>
+            <li><strong>OpenAI GPT:</strong> Q&A and translation</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <h4>🔧 Backend Services</h4>
+          <ul>
+            <li><strong>FastAPI:</strong> RESTful API server</li>
+            <li><strong>Model Loader:</strong> AI model management</li>
+            <li><strong>Prediction Service:</strong> Image analysis</li>
+            <li><strong>OpenAI Service:</strong> Q&A and translation</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <h4>🖥️ Frontend Components</h4>
+          <ul>
+            <li><strong>ImageUpload:</strong> Drag & drop interface</li>
+            <li><strong>ModelResult:</strong> Analysis display</li>
+            <li><strong>QuestionForm:</strong> Q&A interface</li>
+            <li><strong>History:</strong> Chat history</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <h4>🔄 Data Flow</h4>
+          <ul>
+            <li><strong>Upload:</strong> Image → Backend</li>
+            <li><strong>Processing:</strong> AI → Results</li>
+            <li><strong>Display:</strong> Results → Frontend</li>
+            <li><strong>Interaction:</strong> Q&A Loop</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "default",
+        flowchart: {
+          useMaxWidth: true,
+          htmlLabels: true,
+          curve: "basis",
+        },
+        sequence: {
+          diagramMarginX: 50,
+          diagramMarginY: 10,
+          actorMargin: 50,
+          width: 150,
+          height: 65,
+          boxMargin: 10,
+          boxTextMargin: 5,
+          noteMargin: 10,
+          messageMargin: 35,
+        },
+      });
+    </script>
+  </body>
+</html>
